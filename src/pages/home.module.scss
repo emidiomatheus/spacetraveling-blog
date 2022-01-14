@@ -1,7 +1,7 @@
 .container {
   max-width: 700px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2rem 4rem;
 }
 
 .posts {
@@ -57,5 +57,13 @@
         }
       }
     }
+  }
+
+  button {
+    color: var(--pink-500);
+    font-weight: 600;
+    background: transparent;
+    border: 0;
+    margin-top: 4rem;
   }
 }
