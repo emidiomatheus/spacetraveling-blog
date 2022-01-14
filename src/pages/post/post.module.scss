@@ -1,1 +1,42 @@
-// TODO
+.imageContainer {
+    width: 100vw;
+    height: 25rem;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    margin-bottom: 5rem;
+}
+
+.post {
+    h1, h2, h3 {
+        color: var(--gray-50);
+        margin-bottom: 2rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.25rem;
+        margin-top: 2rem;
+    }
+
+    p {
+        font-size: 1.125rem;
+        line-height: 140%;
+        text-align: justify;
+
+        & + p {
+            margin-top: 1rem
+        }
+    }
+}
+
+.postContent {
+    margin-top: 4rem;
+
+}

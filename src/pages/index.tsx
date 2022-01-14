@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import next, { GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 
 import Prismic from '@prismicio/client';
@@ -11,6 +11,7 @@ import { getPrismicClient } from '../services/prismic';
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
 import { useEffect, useState } from 'react';
+import { RichText } from 'prismic-dom';
 
 interface Post {
   uid?: string;
@@ -67,16 +68,23 @@ export default function Home({ postsPagination }: HomeProps) {
         <title>Posts | Spacetraveling</title>
       </Head>
 
-      <main className={styles.container}>
+      <main className={commonStyles.contentContainer}>
         <div className={styles.posts}>
           {posts.map(post => (
             <Link key={post.uid} href={`/post/${post.uid}`}>
               <a>
                 <strong>{post.data.title}</strong>
                 <p>{post.data.subtitle}</p>
-                <div>
+                <div className={commonStyles.postInfo}>
                   <time>
-                    <FiCalendar /> {post.first_publication_date}
+                    <FiCalendar /> 
+                    {format(
+                        new Date(post.first_publication_date),
+                        'dd MMM yyyy',
+                        {
+                          locale: ptBR,
+                        }
+                      )}
                   </time>
                   <span>
                     <FiUser /> {post.data.author}
@@ -105,16 +113,10 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   );
 
-  const postContent = postsResponse.results.map(post => {
+  const posts = postsResponse.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        'dd MMM yyyy',
-        {
-          locale: ptBR,
-        }
-      ),
+      first_publication_date: post.first_publication_date,
       data: {
         title: post.data.title,
         subtitle: post.data.subtitle,
@@ -123,14 +125,12 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   });
 
-  const postsPagination = {
-    next_page: postsResponse.next_page,
-    results: postContent,
-  };
-
   return {
     props: {
-      postsPagination,
+      postsPagination: {
+        next_page: postsResponse.next_page,
+        results: posts,
+      }
     },
   };
 };

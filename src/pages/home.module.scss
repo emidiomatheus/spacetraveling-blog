@@ -32,32 +32,7 @@
     &:hover strong {
       color: var(--pink-500);
     }
-
-    > div {
-      display: flex;
-      align-items: center;
-      margin-top: 1.5rem;
-
-      span {
-        margin-left: 1rem;
-      }
-
-      span,
-      time {
-        font-size: 0.875rem;
-        line-height: 1.094rem;
-        color: var(--gray-200);
-        display: flex;
-        align-items: center;
-
-        svg {
-          width: 20px;
-          height: 20px;
-          margin-right: 0.5rem;
-        }
-      }
-    }
-  }
+}
 
   button {
     color: var(--pink-500);
