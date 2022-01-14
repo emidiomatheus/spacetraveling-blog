@@ -20,6 +20,12 @@
         font-size: 3rem;
     }
 
+    
+}
+
+.postContent {
+    margin-top: 4rem;
+
     h2 {
         font-size: 2.25rem;
         margin-top: 2rem;
@@ -34,9 +40,13 @@
             margin-top: 1rem
         }
     }
-}
 
-.postContent {
-    margin-top: 4rem;
+    a {
+        color: var(--p);
+        transition: filter .2s;
 
+        &:hover {
+            filter: brightness(0.8)
+        }
+    }
 }
